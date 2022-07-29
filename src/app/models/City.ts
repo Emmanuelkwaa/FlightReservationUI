@@ -1,3 +1,5 @@
+import { Airport } from "./Airport";
+
 export class City {
 
     id? :number;

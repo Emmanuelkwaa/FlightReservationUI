@@ -1,3 +1,5 @@
+import { City } from "./City";
+
 export class Flight {
     
     id? :number;
@@ -14,7 +16,7 @@ export class Flight {
         id = 0, 
         flightNumber = '', 
         departCity = new City(), 
-        arrivalCity = new departCity(),
+        arrivalCity = new City(),
         departDateTime = new Date(),
         arrivalDateTime = new Date(),
         economyPrice = 0,
