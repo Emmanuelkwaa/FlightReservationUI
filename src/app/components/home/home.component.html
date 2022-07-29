@@ -1,0 +1,65 @@
+<div class="home-wrapper">
+    <div class="container home">
+        <section class="flight-search-form">
+            <div class="title">
+                <h1>Book Flights</h1>
+            </div>
+            <mat-card class="booking-card">
+                <div class="pass-price">
+                    <button mat-flat-button class="button-class">
+                        <mat-select disabled="true" [(value)]="selectedTripType" placeholder="Trip type">
+                            <mat-option *ngFor="let type of tripTypes" [value]="type.value">
+                                {{type.viewValue}}
+                            </mat-option>
+                        </mat-select>
+                    </button>
+
+                    <button mat-flat-button class="button-class">
+                        <!-- <mat-icon matPrefix>person_add</mat-icon> -->
+                        <mat-select [(value)]="selectedCount" placeholder="Category">
+                            <mat-option *ngFor="let count of numberOfPassengers" [value]="count.value">
+                                {{count.viewValue}}
+                            </mat-option>
+                        </mat-select>
+                    </button>
+
+                    <button mat-flat-button class="button-class">
+                        <mat-select [(value)]="selectedClass" placeholder="Class">
+                            <mat-option *ngFor="let class of tripClass" [value]="class.value">
+                                {{class.viewValue}}
+                            </mat-option>
+                        </mat-select>
+                    </button>
+
+                </div>
+
+                <div class="loc-date">
+                    <mat-form-field appearance="outline">
+                        <mat-icon matPrefix style="margin-right: 0.8rem;">trip_origin</mat-icon>
+                        <mat-label>Depart from</mat-label>
+                        <input matInput #input placeholder="Ex. New York">
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline">
+                        <mat-icon matPrefix style="margin-right: 0.8rem;">location_on</mat-icon>
+                        <mat-label>Arrive at</mat-label>
+                        <input matInput #input placeholder="Ex. California">
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>Depart date</mat-label>
+                        <input matInput [matDatepicker]="dp" [formControl]="date">
+                        <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+                        <mat-datepicker #dp></mat-datepicker>
+                    </mat-form-field>
+                </div>
+                <div class="button">
+                    <button mat-flat-button color="primary">
+                        <!-- <mat-icon matPrefix style="margin-right: 0.8rem;">arrow_right_alt</mat-icon> -->
+                        Search
+                    </button>
+                </div>
+            </mat-card>
+        </section>
+    </div>
+</div>
