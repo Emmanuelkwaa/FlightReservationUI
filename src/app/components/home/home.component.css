@@ -55,17 +55,18 @@
 .loc-date {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-evenly;
+    column-gap: 10px;
 }
 
 .loc-date mat-form-field {
     font-size: 1rem;
     align-items: center;
-    width: 14rem;
+    width: 32%;
 }
 
 .button button {
-    width: 18rem;
+    width: 32%;
     height: 55px;
     margin-top: 6px;
     font-size: 1rem;
@@ -76,6 +77,10 @@
         margin-top: 3rem;
     }
 
+    .flight-search-form {
+        width: 60%;
+    }
+
     .loc-date {
         width: 100%;
     }
@@ -84,21 +89,15 @@
         width: 100%;
     }
 
-    .flight-search-form {
-        width: 60%;
-        margin: auto;
-    }
-
     .button button {
         width: 100%;
         height: 55px;
-        margin-top: 6px;
+        margin-top: 10px;
     }
 }
 
 @media only screen and (max-width: 600px) {
     .flight-search-form {
         width: 100%;
-        margin: auto;
     }
 }
