@@ -1,3 +1,5 @@
+import { Airplane } from "./Airplane";
+
 export class Seat {
     id? :number;
     seatNumber :string;

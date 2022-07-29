@@ -1,4 +1,5 @@
 import { City } from "./City";
+import { Airplane } from "./Airplane";
 
 export class Flight {
     
