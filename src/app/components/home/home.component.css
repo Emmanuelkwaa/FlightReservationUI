@@ -13,18 +13,19 @@
     background-position: center;
     width: 100%;
     min-height: 100vh;
-
-    display: grid;
 }
 
 .home {
-    margin-top: 10rem;
+    display: grid;
+    row-gap: 100px;
+    padding-top: 100px;
+    padding-bottom: 0 0 0 10px;
 }
 
-.flight-search-form {
+/* .flight-search-form {
     width: 80%;
     margin: auto;
-}
+} */
 
 .title {
     display: flex;
@@ -49,8 +50,7 @@
     font-size: 10px;
 }
 
-.button-class {
-}
+.button-class {}
 
 .loc-date {
     display: flex;
@@ -74,12 +74,12 @@
 
 @media only screen and (max-width: 768px) {
     .home {
-        margin-top: 3rem;
+        
     }
 
-    .flight-search-form {
+    /* .flight-search-form {
         width: 60%;
-    }
+    } */
 
     .loc-date {
         width: 100%;

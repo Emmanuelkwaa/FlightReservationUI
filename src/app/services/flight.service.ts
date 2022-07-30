@@ -1,38 +1,30 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { Flight } from '../models/Flight';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FlightService {
-
-  flightToAdd: Flight = new Flight();
-
   flightUrl = "/flights"
 
-  constructor(private http :HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-   getAllFlights (): Observable<Flight[]>{
-    return this.http.get<Flight[]>(this.flightUrl);
-    
+  getAllFlights(): Observable<Flight[]> {
+    return this.http.get<Flight[]>(`${environment.baseUrl}${this.flightUrl}`);
   }
 
-  addFlight(flight: Flight){
-    return this.http.post<Flight>(this.flightUrl, flight);
-    
+  addFlight(flight: Flight) {
+    return this.http.post<Flight>(`${environment.baseUrl}${this.flightUrl}`, flight);
   }
 
-  update(flight: Flight){
-    return this.http.put<Flight>(this.flightUrl, Flight);
-    
+  update(flight: Flight) {
+    return this.http.put<Flight>(`${environment.baseUrl}${this.flightUrl}`, flight);
   }
 
-  // TO DO
-  // Probably needs to be changed
-  delete(id: number): any{
-    return this.http.delete<any>(this.flightUrl, {"body":{"id": id}});
-    
+  delete(id: number): Observable<Flight> {
+    return this.http.delete<Flight>(`${environment.baseUrl}${this.flightUrl}/${id}`);
   }
 }
