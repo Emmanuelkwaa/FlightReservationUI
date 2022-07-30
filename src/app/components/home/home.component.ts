@@ -4,6 +4,8 @@ import {MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS} from '@angular/mater
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
 import * as _moment from 'moment';
 import {default as _rollupMoment} from 'moment';
+import { Booking } from 'src/app/models/Booking';
+import { FlightService } from 'src/app/services/flight.service';
 
 const moment = _rollupMoment || _moment;
 export const MY_FORMATS = {
@@ -36,7 +38,7 @@ export class HomeComponent implements OnInit {
   bookingForm!: FormGroup;
   date = new FormControl(moment());
 
-  constructor(private formBuilder: FormBuilder,) { }
+  constructor(private formBuilder: FormBuilder, private flightService : FlightService) { }
 
   ngOnInit(): void {
     this.bookingForm = this.formBuilder.group({
@@ -83,7 +85,19 @@ export class HomeComponent implements OnInit {
   selectedCount = this.numberOfPassengers[0].value
   selectedTripType = this.tripTypes[0].value
 
-  
+  findFlight() {
+    if (this.bookingForm.valid) {
+      let booking = new Booking();
+      booking.tripType = this.bookingForm.controls['tripType'].value;
+      booking.numberOfPassengers = this.bookingForm.controls['numberOfPassengers'].value;
+      booking.tripClass = this.bookingForm.controls['tripClass'].value;
+      booking.departCity = this.bookingForm.controls['departCity'].value;
+      booking.arrivalCity = this.bookingForm.controls['arrivalCity'].value;
+      booking.date = this.bookingForm.controls['date'].value;
+
+      this.fligh
+    }
+  }
 
   
 
