@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Booking } from '../models/Booking';
 import { Flight } from '../models/Flight';
 
 @Injectable({
@@ -13,6 +14,10 @@ export class FlightService {
   constructor(private http: HttpClient) { }
 
   getAllFlights(): Observable<Flight[]> {
+    return this.http.get<Flight[]>(`${environment.baseUrl}${this.flightUrl}`);
+  }
+
+  getFlightByArrivalAndDepartCity(booking :Booking) :Observable<Flight[]> {
     return this.http.get<Flight[]>(`${environment.baseUrl}${this.flightUrl}`);
   }
 
