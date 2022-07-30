@@ -3,7 +3,7 @@ import { Airline } from "./Airline";
 
 export class Airplane {
 
-    id :string;
+    id? :string;
     currentCapacity :number;
     maxCapacity :number;
     model :string;

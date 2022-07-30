@@ -36,6 +36,19 @@ export class HomeComponent implements OnInit {
   bookingForm!: FormGroup;
   date = new FormControl(moment());
 
+  constructor(private formBuilder: FormBuilder,) { }
+
+  ngOnInit(): void {
+    this.bookingForm = this.formBuilder.group({
+      tripType: ['', Validators.required],
+      numberOfPassengers: ['', Validators.required],
+      tripClass: ['', Validators.required],
+      departCity: ['', Validators.required],
+      arrivalCity: ['', Validators.required],
+      date: ['', Validators.required],
+    });
+  }
+
   foods: any[] = [
     {value: 'steak-0', viewValue: 'Steak'},
     {value: 'pizza-1', viewValue: 'Pizza'},
@@ -70,9 +83,8 @@ export class HomeComponent implements OnInit {
   selectedCount = this.numberOfPassengers[0].value
   selectedTripType = this.tripTypes[0].value
 
-  constructor() { }
+  
 
-  ngOnInit(): void {
-  }
+  
 
 }
