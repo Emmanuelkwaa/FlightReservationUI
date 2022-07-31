@@ -4,11 +4,11 @@
             <div class="title">
                 <h1>Book Flights</h1>
             </div>
-            
-                <mat-card class="booking-card">
-                    <form [formGroup] = "bookingForm">
+
+            <mat-card class="booking-card">
+                <form [formGroup]="bookingForm">
                     <div class="pass-price">
-                        <button mat-flat-button class="button-class">
+                        <!-- <button mat-flat-button class="button-class">
                             <mat-select disabled [(value)]="selectedTripType" placeholder="Trip type">
                                 <mat-option *ngFor="let type of tripTypes" [value]="type.value">
                                     {{type.viewValue}}
@@ -17,7 +17,6 @@
                         </button>
 
                         <button mat-flat-button class="button-class">
-                            <!-- <mat-icon matPrefix>person_add</mat-icon> -->
                             <mat-select formControlName="numberOfPassengers" [(value)]="selectedCount" placeholder="Passengers">
                                 <mat-option *ngFor="let count of numberOfPassengers" [value]="count.value">
                                     {{count.viewValue}}
@@ -31,7 +30,31 @@
                                     {{class.viewValue}}
                                 </mat-option>
                             </mat-select>
-                        </button>
+                        </button> -->
+
+                        <mat-form-field appearance="fill" style="width: 90px;">
+                            <mat-select disabled [(value)]="selectedTripType" placeholder="Trip type">
+                                <mat-option *ngFor="let type of tripTypes" [value]="type.value">
+                                    {{type.viewValue}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="fill" style="width: 90px;">
+                            <mat-select required [(value)]="selectedCount" placeholder="Passengers">
+                                <mat-option *ngFor="let count of numberOfPassengers" [value]="count.value">
+                                    {{count.viewValue}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="fill" style="width: 90px;">
+                            <mat-select required [(value)]="selectedClass" placeholder="Class">
+                                <mat-option *ngFor="let class of tripClass" [value]="class.value">
+                                    {{class.viewValue}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
 
                     </div>
 
@@ -50,7 +73,7 @@
 
                         <mat-form-field appearance="outline">
                             <mat-label>Depart date</mat-label>
-                            <input formControlName="date" matInput [matDatepicker]="dp" >
+                            <input formControlName="date" matInput [matDatepicker]="dp">
                             <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
                             <mat-datepicker #dp></mat-datepicker>
                         </mat-form-field>
@@ -62,8 +85,8 @@
                         </button>
                     </div>
                 </form>
-                </mat-card>
-            
+            </mat-card>
+
         </section>
 
         <app-flight-list></app-flight-list>

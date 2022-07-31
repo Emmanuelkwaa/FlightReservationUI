@@ -5,6 +5,7 @@ import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/
 import * as _moment from 'moment';
 import {default as _rollupMoment} from 'moment';
 import { Booking } from 'src/app/models/Booking';
+import { City } from 'src/app/models/City';
 import { FlightService } from 'src/app/services/flight.service';
 
 const moment = _rollupMoment || _moment;
@@ -36,7 +37,7 @@ export const MY_FORMATS = {
 })
 export class HomeComponent implements OnInit {
   bookingForm!: FormGroup;
-  date = new FormControl(moment());
+  //date = new FormControl(moment());
 
   constructor(private formBuilder: FormBuilder, private flightService : FlightService) { }
 
@@ -47,7 +48,7 @@ export class HomeComponent implements OnInit {
       tripClass: ['',],
       departCity: ['', Validators.required],
       arrivalCity: ['', Validators.required],
-      date: ['',],
+      date: ['', Validators.required],
     });
   }
 
@@ -88,10 +89,10 @@ export class HomeComponent implements OnInit {
   findFlight() {
     if (this.bookingForm.valid) {
       let booking = new Booking();
-      booking.tripType = this.bookingForm.controls['tripType'].value;
-      booking.numberOfPassengers = this.bookingForm.controls['numberOfPassengers'].value;
-      booking.tripClass = this.bookingForm.controls['tripClass'].value;
-      booking.departCity = this.bookingForm.controls['departCity'].value;
+      booking.tripType = this.selectedTripType;
+      booking.numberOfPassengers = this.selectedCount;
+      booking.tripClass = this.selectedClass;
+      booking.departCity =  this.bookingForm.controls['departCity'].value;
       booking.arrivalCity = this.bookingForm.controls['arrivalCity'].value;
       booking.date = this.bookingForm.controls['date'].value;
 
