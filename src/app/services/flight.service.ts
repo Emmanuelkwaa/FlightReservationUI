@@ -18,7 +18,7 @@ export class FlightService {
   }
 
   getFlightByArrivalAndDepartCity(booking :Booking) :Observable<Flight[]> {
-    return this.http.get<Flight[]>(`${environment.baseUrl}${this.flightUrl}`);
+    return this.http.get<Flight[]>(`${environment.baseUrl}${this.flightUrl}/flightByCities`);
   }
 
   addFlight(flight: Flight) {

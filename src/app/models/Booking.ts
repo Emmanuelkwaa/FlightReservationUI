@@ -7,6 +7,7 @@ export class Booking {
     departCity :City;
     arrivalCity :City;
     date: Date;
+  booking: any;
 
     constructor(
         tripType = '', 

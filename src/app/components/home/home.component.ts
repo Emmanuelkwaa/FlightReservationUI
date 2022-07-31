@@ -42,12 +42,12 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.bookingForm = this.formBuilder.group({
-      tripType: ['', Validators.required],
-      numberOfPassengers: ['', Validators.required],
-      tripClass: ['', Validators.required],
+      tripType: ['',],
+      numberOfPassengers: ['',],
+      tripClass: ['',],
       departCity: ['', Validators.required],
       arrivalCity: ['', Validators.required],
-      date: ['', Validators.required],
+      date: ['',],
     });
   }
 
@@ -95,7 +95,17 @@ export class HomeComponent implements OnInit {
       booking.arrivalCity = this.bookingForm.controls['arrivalCity'].value;
       booking.date = this.bookingForm.controls['date'].value;
 
-      this.fligh
+      console.log(booking);
+
+      this.flightService.getFlightByArrivalAndDepartCity(booking)
+          .subscribe({
+            next: (res) => {
+              console.log(res);
+            },
+            error: (err) => {
+              alert(err.message);
+            }
+          });
     }
   }
 
