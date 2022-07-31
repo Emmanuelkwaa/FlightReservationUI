@@ -1,39 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import {MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS} from '@angular/material-moment-adapter';
-import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
-import * as _moment from 'moment';
-import {default as _rollupMoment} from 'moment';
 import { Booking } from 'src/app/models/Booking';
-import { City } from 'src/app/models/City';
 import { FlightService } from 'src/app/services/flight.service';
-
-const moment = _rollupMoment || _moment;
-export const MY_FORMATS = {
-  parse: {
-    dateInput: 'LL',
-  },
-  display: {
-    dateInput: 'LL',
-    monthYearLabel: 'MMM YYYY',
-    dateA11yLabel: 'LL',
-    monthYearA11yLabel: 'MMMM YYYY',
-  },
-};
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  providers: [
-    {
-      provide: DateAdapter,
-      useClass: MomentDateAdapter,
-      deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS],
-    },
-
-    {provide: MAT_DATE_FORMATS, useValue: MY_FORMATS},
-  ],
 })
 export class HomeComponent implements OnInit {
   bookingForm!: FormGroup;
@@ -51,12 +24,6 @@ export class HomeComponent implements OnInit {
       date: ['', Validators.required],
     });
   }
-
-  foods: any[] = [
-    {value: 'steak-0', viewValue: 'Steak'},
-    {value: 'pizza-1', viewValue: 'Pizza'},
-    {value: 'tacos-2', viewValue: 'Tacos'},
-  ];
 
   numberOfPassengers: any[] = [
     {value: 1, viewValue: '+1'},
@@ -81,7 +48,6 @@ export class HomeComponent implements OnInit {
     {value: 'round trip', viewValue: 'Round trip'},
   ];
 
-  selectedFood = this.foods[1].value
   selectedClass = this.tripClass[0].value
   selectedCount = this.numberOfPassengers[0].value
   selectedTripType = this.tripTypes[0].value
@@ -94,9 +60,10 @@ export class HomeComponent implements OnInit {
       booking.tripClass = this.selectedClass;
       booking.departCity =  this.bookingForm.controls['departCity'].value;
       booking.arrivalCity = this.bookingForm.controls['arrivalCity'].value;
-      booking.date = this.bookingForm.controls['date'].value;
+      booking.date = Date.parse(this.bookingForm.controls['date'].value);
 
       console.log(booking);
+      console.log(JSON.stringify(this.bookingForm.controls['date'].value));
 
       this.flightService.getFlightByArrivalAndDepartCity(booking)
           .subscribe({
@@ -109,7 +76,4 @@ export class HomeComponent implements OnInit {
           });
     }
   }
-
-  
-
 }
