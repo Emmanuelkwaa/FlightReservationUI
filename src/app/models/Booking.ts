@@ -6,7 +6,7 @@ export class Booking {
     tripClass :string;
     departCity :string;
     arrivalCity :string;
-    date: Number;
+    date: Date;
 
     constructor(
         tripType = '', 
@@ -14,7 +14,7 @@ export class Booking {
         tripClass = '', 
         departCity = '', 
         arrivalCity = '', 
-        date = 0
+        date = new Date
     ) {
         this.tripType = tripType;
         this.numberOfPassengers = numberOfPassengers;

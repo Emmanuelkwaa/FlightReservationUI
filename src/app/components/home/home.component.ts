@@ -60,7 +60,7 @@ export class HomeComponent implements OnInit {
         this.selectedClass,
         this.bookingForm.controls['departCity'].value,
         this.bookingForm.controls['arrivalCity'].value,
-        Date.parse(this.bookingForm.controls['date'].value)
+        this.bookingForm.controls['date'].value
       );
       // booking.tripType = this.selectedTripType;
       // booking.numberOfPassengers = this.selectedCount;
