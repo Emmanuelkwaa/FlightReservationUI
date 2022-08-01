@@ -22,12 +22,14 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
+import { SearchResultComponent } from './components/search-result/search-result.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    FlightListComponent
+    FlightListComponent,
+    SearchResultComponent
   ],
   imports: [
     BrowserModule,
