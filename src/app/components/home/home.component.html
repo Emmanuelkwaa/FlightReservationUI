@@ -8,29 +8,6 @@
             <mat-card class="booking-card">
                 <form [formGroup]="bookingForm">
                     <div class="pass-price">
-                        <!-- <button mat-flat-button class="button-class">
-                            <mat-select disabled [(value)]="selectedTripType" placeholder="Trip type">
-                                <mat-option *ngFor="let type of tripTypes" [value]="type.value">
-                                    {{type.viewValue}}
-                                </mat-option>
-                            </mat-select>
-                        </button>
-
-                        <button mat-flat-button class="button-class">
-                            <mat-select formControlName="numberOfPassengers" [(value)]="selectedCount" placeholder="Passengers">
-                                <mat-option *ngFor="let count of numberOfPassengers" [value]="count.value">
-                                    {{count.viewValue}}
-                                </mat-option>
-                            </mat-select>
-                        </button>
-
-                        <button mat-flat-button class="button-class">
-                            <mat-select formControlName="tripClass" [(value)]="selectedClass" placeholder="Class">
-                                <mat-option *ngFor="let class of tripClass" [value]="class.value">
-                                    {{class.viewValue}}
-                                </mat-option>
-                            </mat-select>
-                        </button> -->
 
                         <mat-form-field appearance="fill" style="width: 90px;">
                             <mat-select disabled [(value)]="selectedTripType" placeholder="Trip type">
@@ -90,6 +67,8 @@
 
         </section>
 
+        <app-search-result *ngIf="searchResult" [result] = "searchResult" ></app-search-result>
+        
         <app-flight-list></app-flight-list>
     </div>
 </div>

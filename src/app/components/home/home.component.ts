@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Booking } from 'src/app/models/Booking';
+import { Flight } from 'src/app/models/Flight';
 import { FlightService } from 'src/app/services/flight.service';
 
 @Component({
@@ -9,7 +10,8 @@ import { FlightService } from 'src/app/services/flight.service';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  bookingForm!: FormGroup;
+  bookingForm! :FormGroup;
+  searchResult! :Flight[];
   //date = new FormControl(moment());
 
   constructor(private formBuilder: FormBuilder, private flightService : FlightService) { }
@@ -62,20 +64,12 @@ export class HomeComponent implements OnInit {
         this.bookingForm.controls['arrivalCity'].value,
         this.bookingForm.controls['date'].value
       );
-      // booking.tripType = this.selectedTripType;
-      // booking.numberOfPassengers = this.selectedCount;
-      // booking.tripClass = this.selectedClass;
-      // booking.departCity =  this.bookingForm.controls['departCity'].value;
-      // booking.arrivalCity = this.bookingForm.controls['arrivalCity'].value;
-      // booking.date = Date.parse(this.bookingForm.controls['date'].value);
-
-      //console.log(booking);
-      //console.log(JSON.stringify(this.bookingForm.controls['date'].value));
 
       this.flightService.getFlightByArrivalAndDepartCity(booking)
           .subscribe({
-            next: (res) => {
-              console.log(res);
+            next: (result) => {
+              this.searchResult = result;
+              console.log(this.searchResult);
             },
             error: (err) => {
               alert(err.message);

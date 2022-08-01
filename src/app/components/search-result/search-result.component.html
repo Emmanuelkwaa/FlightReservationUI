@@ -1,1 +1,46 @@
-<p>search-result works!</p>
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="flightNumber">
+        <th mat-header-cell *matHeaderCellDef> Flight # </th>
+        <td mat-cell *matCellDef="let element"> {{element.flightNumber}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="departAirport.city.name">
+        <th mat-header-cell *matHeaderCellDef> Dep. city </th>
+        <td mat-cell *matCellDef="let element"> {{element.departAirport.city.name}} </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="arrivalAirport.city.name">
+        <th mat-header-cell *matHeaderCellDef> Arr. city </th>
+        <td mat-cell *matCellDef="let element"> {{element.arrivalAirport.city.name}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="departDateTime">
+        <th mat-header-cell *matHeaderCellDef> Dep. date </th>
+        <td mat-cell *matCellDef="let element"> {{element.departDateTime | date: 'M/d/yy, h:mm a'}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="arrivalDateTime">
+        <th mat-header-cell *matHeaderCellDef> Arr. date </th>
+        <td mat-cell *matCellDef="let element"> {{element.arrivalDateTime | date: 'M/d/yy, h:mm a'}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
+        <td mat-cell *matCellDef="let element">
+            <button mat-raised-button color="primary" (click)="bookFlight(element)">
+                <mat-icon>arrow_right_alt</mat-icon>
+            </button>
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
