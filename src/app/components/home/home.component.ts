@@ -54,16 +54,23 @@ export class HomeComponent implements OnInit {
 
   findFlight() {
     if (this.bookingForm.valid) {
-      let booking = new Booking();
-      booking.tripType = this.selectedTripType;
-      booking.numberOfPassengers = this.selectedCount;
-      booking.tripClass = this.selectedClass;
-      booking.departCity =  this.bookingForm.controls['departCity'].value;
-      booking.arrivalCity = this.bookingForm.controls['arrivalCity'].value;
-      booking.date = Date.parse(this.bookingForm.controls['date'].value);
+      const booking = new Booking(
+        this.selectedTripType, 
+        this.selectedCount, 
+        this.selectedClass,
+        this.bookingForm.controls['departCity'].value,
+        this.bookingForm.controls['arrivalCity'].value,
+        Date.parse(this.bookingForm.controls['date'].value)
+      );
+      // booking.tripType = this.selectedTripType;
+      // booking.numberOfPassengers = this.selectedCount;
+      // booking.tripClass = this.selectedClass;
+      // booking.departCity =  this.bookingForm.controls['departCity'].value;
+      // booking.arrivalCity = this.bookingForm.controls['arrivalCity'].value;
+      // booking.date = Date.parse(this.bookingForm.controls['date'].value);
 
-      console.log(booking);
-      console.log(JSON.stringify(this.bookingForm.controls['date'].value));
+      //console.log(booking);
+      //console.log(JSON.stringify(this.bookingForm.controls['date'].value));
 
       this.flightService.getFlightByArrivalAndDepartCity(booking)
           .subscribe({
@@ -74,6 +81,7 @@ export class HomeComponent implements OnInit {
               alert(err.message);
             }
           });
+          console.log(booking);
     }
   }
 }
