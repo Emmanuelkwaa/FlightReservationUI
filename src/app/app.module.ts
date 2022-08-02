@@ -23,13 +23,16 @@ import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
 import { SearchResultComponent } from './components/search-result/search-result.component';
+import { ConfirmModalComponent } from './components/confirm-modal/confirm-modal.component';
+import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     FlightListComponent,
-    SearchResultComponent
+    SearchResultComponent,
+    ConfirmModalComponent
   ],
   imports: [
     BrowserModule,
@@ -50,6 +53,7 @@ import { SearchResultComponent } from './components/search-result/search-result.
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
+    MatDialogModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

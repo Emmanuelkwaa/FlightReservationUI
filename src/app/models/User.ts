@@ -7,15 +7,13 @@ export class User {
     lastName :string;
     phoneNumber :string;
     email :string;
-    ticket :Ticket;
 
     constructor(
         id = 0,
         firstName = '',
         lastName = '',
         phoneNumber = '',
-        email = '',
-        ticket = new Ticket
+        email = ''
 
     ) {
         this.id = id;
@@ -23,6 +21,5 @@ export class User {
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
         this.email = email;
-        this.ticket = ticket;
     }
 }

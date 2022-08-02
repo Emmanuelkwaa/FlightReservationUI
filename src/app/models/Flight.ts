@@ -1,12 +1,13 @@
 import { City } from "./City";
 import { Airplane } from "./Airplane";
+import { Airport } from "./Airport";
 
 export class Flight {
     
     id? :number;
     flightNumber :string;
-    departCity :City;
-    arrivalCity :City;
+    departAirport :Airport;
+    arrivalAirport :Airport;
     departDateTime :Date;
     arrivalDateTime :Date;
     economyPrice :number;
@@ -16,8 +17,8 @@ export class Flight {
     constructor(
         id = 0, 
         flightNumber = '', 
-        departCity = new City(), 
-        arrivalCity = new City(),
+        departAirport = new Airport(), 
+        arrivalAirport = new Airport(),
         departDateTime = new Date(),
         arrivalDateTime = new Date(),
         economyPrice = 0,
@@ -26,8 +27,8 @@ export class Flight {
     ) {
         this.id = id;
         this.flightNumber = flightNumber;
-        this.departCity = departCity;
-        this.arrivalCity = arrivalCity;
+        this.departAirport = departAirport;
+        this.arrivalAirport = arrivalAirport;
         this.departDateTime = departDateTime;
         this.arrivalDateTime = arrivalDateTime;
         this.economyPrice = economyPrice;

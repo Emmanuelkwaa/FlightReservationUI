@@ -4,12 +4,12 @@ import { User } from "./User";
 
 export class Ticket {
 
-    id :string;
+    id? :string;
     ticketType :string;
-    flight :Flight;
+    flightId :number;
     user :User;
     dateOfPurchase :Date;
-    seat :Seat;
+    seatId :number;
     from :string;
     to :string;
     price :number;
@@ -17,10 +17,10 @@ export class Ticket {
     constructor(
         id = '',
         ticketType = '',
-        flight = new Flight,
+        flightId = 0,
         user = new User,
         dateOfPurchase = new Date(),
-        seat = new Seat,
+        seatId = 0,
         from = '',
         to = '',
         price = 0
@@ -28,10 +28,10 @@ export class Ticket {
     ) {
         this.id = id;
         this.ticketType = ticketType;
-        this.flight = flight;
+        this.flightId = flightId;
         this.user = user;
         this.dateOfPurchase = dateOfPurchase;
-        this.seat = seat;
+        this.seatId = seatId;
         this.from = from;
         this.to = to;
         this.price = price;

@@ -7,7 +7,7 @@ export class Airplane {
     currentCapacity :number;
     maxCapacity :number;
     model :string;
-    seat :Seat;
+    seats :Seat[];
     airline :Airline;
 
     constructor(
@@ -15,14 +15,14 @@ export class Airplane {
         currentCapacity = 0,
         maxCapacity = 0,
         model = '',
-        seat = new Seat,
+        seats = new Array<Seat>,
         airline = new Airline
     ) {
         this.id = id;
         this.currentCapacity = currentCapacity;
         this.maxCapacity = maxCapacity;
         this.model = model;
-        this.seat = seat;
+        this.seats = seats;
         this.airline = airline;
     }
 
