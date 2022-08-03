@@ -1,4 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
+import { tick } from '@angular/core/testing';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Flight } from 'src/app/models/Flight';
@@ -98,7 +99,7 @@ export class ConfirmModalComponent implements OnInit {
       const ticket = new Ticket(
         '',
         this.confirmationForm.controls['tripType'].value,
-        this.editData.id,
+        this.editData,
         new User(
           0, 
           this.confirmationForm.controls['firstName'].value, 
@@ -110,8 +111,11 @@ export class ConfirmModalComponent implements OnInit {
         this.confirmationForm.controls['seat'].value,
         this.confirmationForm.controls['departCity'].value,
         this.confirmationForm.controls['arrivalCity'].value,
-        price
+        price,
+        this.confirmationForm.controls['numberOfPassengers'].value,
       )
+
+      console.log(ticket);
 
       this.ticketService.createTicket(ticket)
           .subscribe({
