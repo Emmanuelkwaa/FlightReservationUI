@@ -1,0 +1,28 @@
+/* .receipt-section {
+    display: flex;
+} */
+.receipt {
+    color: #3f51b5;
+    /* padding: 25px; */
+    /* align-content: center;
+    justify-content: center;
+    align-items: center; */
+}
+
+.hr-thick {
+    border: 3px solid;
+}
+
+.mat-card {
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.user-info {
+    color: #3f51b5;
+}
+
+.airport-seat {
+    display: flex;
+    justify-content: space-between;
+}

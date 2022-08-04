@@ -61,7 +61,7 @@ export class ConfirmModalComponent implements OnInit {
     if (this.detectMob()) {
       this.width = '100%';
     } else {
-      this.width = '30%';
+      this.width = '60%';
     }
 
     this.confirmationForm = this.formBuilder.group({
