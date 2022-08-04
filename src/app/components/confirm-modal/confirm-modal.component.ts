@@ -1,5 +1,4 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { tick } from '@angular/core/testing';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Flight } from 'src/app/models/Flight';
@@ -7,6 +6,8 @@ import { Seat } from 'src/app/models/Seat';
 import { Ticket } from 'src/app/models/Ticket';
 import { User } from 'src/app/models/User';
 import { TicketService } from 'src/app/services/ticket.service';
+import { TicketReceitComponent } from '../ticket-receit/ticket-receit.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-confirm-modal',
@@ -15,15 +16,54 @@ import { TicketService } from 'src/app/services/ticket.service';
 })
 export class ConfirmModalComponent implements OnInit {
   confirmationForm! :FormGroup;
+
+  ticketReceipt! :Ticket[];
+  width : string = '';
   
   constructor(
     private ticketService :TicketService,
     private formBuilder: FormBuilder,
     private dialogRef: MatDialogRef<ConfirmModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public editData: Flight
+    @Inject(MAT_DIALOG_DATA) public editData: Flight,
+    private dialog :MatDialog
   ) { }
 
+  seats: Seat[] = [];
+
+  numberOfPassengers: any[] = [
+    {value: 1, viewValue: '+1'},
+    {value: 2, viewValue: '+2'},
+    {value: 3, viewValue: '+3'},
+    {value: 4, viewValue: '+4'},
+    {value: 5, viewValue: '+5'},
+    {value: 6, viewValue: '+6'},
+    {value: 7, viewValue: '+7'},
+    {value: 8, viewValue: '+8'},
+    {value: 9, viewValue: '+9'},
+    {value: 10, viewValue: '+10'},
+  ]
+
+  tripClass: any[] = [
+    {value: 'economy', viewValue: 'Economy'},
+    {value: 'business', viewValue: 'Business'},
+  ];
+  
+  tripTypes: any[] = [
+    {value: 'one way', viewValue: 'One way'},
+    {value: 'round trip', viewValue: 'Round trip'},
+  ];
+
+  selectedClass = this.tripClass[0].value
+  selectedCount = this.numberOfPassengers[0].value
+  selectedTripType = this.tripTypes[0].value
+
   ngOnInit(): void {
+    if (this.detectMob()) {
+      this.width = '100%';
+    } else {
+      this.width = '30%';
+    }
+
     this.confirmationForm = this.formBuilder.group({
       tripType: ['',Validators.required],
       numberOfPassengers: ['',Validators.required],
@@ -58,36 +98,10 @@ export class ConfirmModalComponent implements OnInit {
     }
   }
 
-  seats: Seat[] = [];
-
-  numberOfPassengers: any[] = [
-    {value: 1, viewValue: '+1'},
-    {value: 2, viewValue: '+2'},
-    {value: 3, viewValue: '+3'},
-    {value: 4, viewValue: '+4'},
-    {value: 5, viewValue: '+5'},
-    {value: 6, viewValue: '+6'},
-    {value: 7, viewValue: '+7'},
-    {value: 8, viewValue: '+8'},
-    {value: 9, viewValue: '+9'},
-    {value: 10, viewValue: '+10'},
-  ]
-
-  tripClass: any[] = [
-    {value: 'economy', viewValue: 'Economy'},
-    {value: 'business', viewValue: 'Business'},
-  ];
   
-  tripTypes: any[] = [
-    {value: 'one way', viewValue: 'One way'},
-    {value: 'round trip', viewValue: 'Round trip'},
-  ];
-
-  selectedClass = this.tripClass[0].value
-  selectedCount = this.numberOfPassengers[0].value
-  selectedTripType = this.tripTypes[0].value
 
   bookFlight() {
+    this.selectedCount = this.confirmationForm.controls['numberOfPassengers'].value;
     if(this.confirmationForm.valid) {
       let price = 0;
       if(this.selectedClass == 'economy') {
@@ -108,7 +122,7 @@ export class ConfirmModalComponent implements OnInit {
           this.confirmationForm.controls['email'].value
         ),
         new Date(Date.now()),
-        this.confirmationForm.controls['seat'].value,
+        new Seat(),
         this.confirmationForm.controls['departCity'].value,
         this.confirmationForm.controls['arrivalCity'].value,
         price,
@@ -120,15 +134,43 @@ export class ConfirmModalComponent implements OnInit {
       this.ticketService.createTicket(ticket)
           .subscribe({
             next: (res) => {
-              alert(`Your ticket number is: ${res.id}. Look it up for more information`);
+              this.ticketReceipt = res;
               this.confirmationForm.reset();
               this.dialogRef.close('created');
+              this.openDialog(res)
             },
             error: (err) => {
               alert(err.message);
             }
           });
     }
+  }
+
+  openDialog(tickets :Ticket[]) {
+    this.dialog.open(TicketReceitComponent, {
+      width: this.width,
+      data: tickets
+    }).afterClosed().subscribe(val => {
+      if(val==="created") {
+        
+      }
+    })
+  }
+
+  detectMob() {
+    const toMatch = [
+      /Android/i,
+      /webOS/i,
+      /iPhone/i,
+      /iPad/i,
+      /iPod/i,
+      /BlackBerry/i,
+      /Windows Phone/i
+    ];
+
+    return toMatch.some((toMatchItem) => {
+      return navigator.userAgent.match(toMatchItem);
+    });
   }
 
 }

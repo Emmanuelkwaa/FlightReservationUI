@@ -1,0 +1,21 @@
+<section class="receipt-section" *ngFor="let ticket of tickets">
+    <mat-card>
+        <mat-card-title>{{"FLIGHT" + ticket.flight.flightNumber}}</mat-card-title>
+        <hr>
+        <div class="date-dayleft">
+            <mat-card-subtitle>{{ticket.flight.departDateTime | date: 'EEEE, MMMM d, y, h:mm a'}}</mat-card-subtitle>
+            <mat-card-subtitle>{{daysLeft(ticket.flight.departDateTime)}}</mat-card-subtitle>
+        </div>
+        <div class="airport-seat">
+            <div class="airports">
+                <h1>{{ticket.flight.departAirport.name}} <mat-icon>arrow_right</mat-icon>
+                    {{ticket.flight.arrivalAirport.name}}</h1>
+            </div>
+            <div class="seat">
+                <mat-card-subtitle>SEAT #: {{ticket.seat.seatNumber}} | SEAT CAN'T BE CHANGED</mat-card-subtitle>
+            </div>
+
+        </div>
+
+    </mat-card>
+</section>

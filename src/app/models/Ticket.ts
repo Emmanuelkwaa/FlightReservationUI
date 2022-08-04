@@ -9,7 +9,7 @@ export class Ticket {
     flight :Flight;
     user :User;
     dateOfPurchase :Date;
-    seatId :number;
+    seat :Seat;
     from :string;
     to :string;
     price :number;
@@ -21,7 +21,7 @@ export class Ticket {
         flight = new Flight(),
         user = new User,
         dateOfPurchase = new Date(),
-        seatId = 0,
+        seat = new Seat(),
         from = '',
         to = '',
         price = 0,
@@ -33,7 +33,7 @@ export class Ticket {
         this.flight = flight;
         this.user = user;
         this.dateOfPurchase = dateOfPurchase;
-        this.seatId = seatId;
+        this.seat = seat;
         this.from = from;
         this.to = to;
         this.price = price;

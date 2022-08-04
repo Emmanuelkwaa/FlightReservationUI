@@ -25,6 +25,7 @@ import {MatSortModule} from '@angular/material/sort';
 import { SearchResultComponent } from './components/search-result/search-result.component';
 import { ConfirmModalComponent } from './components/confirm-modal/confirm-modal.component';
 import {MatDialogModule} from '@angular/material/dialog';
+import { TicketReceitComponent } from './components/ticket-receit/ticket-receit.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     HomeComponent,
     FlightListComponent,
     SearchResultComponent,
-    ConfirmModalComponent
+    ConfirmModalComponent,
+    TicketReceitComponent
   ],
   imports: [
     BrowserModule,

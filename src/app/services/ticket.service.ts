@@ -12,8 +12,8 @@ export class TicketService {
 
   constructor(private http: HttpClient) { }
 
-  createTicket(ticket :Ticket) :Observable<Ticket> {
-    return this.http.post<Ticket>(`${environment.baseUrl}${this.ticketUrl}`, ticket);
+  createTicket(ticket :Ticket) :Observable<Ticket[]> {
+    return this.http.post<Ticket[]>(`${environment.baseUrl}${this.ticketUrl}`, ticket);
   }
 
   getTicket(id :string): Observable<Ticket> {

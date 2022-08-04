@@ -18,7 +18,7 @@
                         </mat-form-field>
 
                         <mat-form-field appearance="fill" style="width: 90px;">
-                            <mat-select required [(value)]="selectedCount" placeholder="Passengers">
+                            <mat-select disabled required [(value)]="selectedCount" placeholder="Passengers">
                                 <mat-option *ngFor="let count of numberOfPassengers" [value]="count.value">
                                     {{count.viewValue}}
                                 </mat-option>
@@ -26,7 +26,7 @@
                         </mat-form-field>
 
                         <mat-form-field appearance="fill" style="width: 90px;">
-                            <mat-select required [(value)]="selectedClass" placeholder="Class">
+                            <mat-select disabled required [(value)]="selectedClass" placeholder="Class">
                                 <mat-option *ngFor="let class of tripClass" [value]="class.value">
                                     {{class.viewValue}}
                                 </mat-option>
