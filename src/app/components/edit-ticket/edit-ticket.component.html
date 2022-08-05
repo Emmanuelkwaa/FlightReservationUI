@@ -1,1 +1,69 @@
-<p>edit-ticket works!</p>
+<h1 mat-dialog-title>Flight Itenary</h1>
+<div class="mat-dialog-content">
+    <div class="receipt-section">
+        <mat-card class="mat-card">
+            <div class="title">
+                <mat-card-title>{{"FLIGHT " + ticket.flight.flightNumber}}</mat-card-title>
+                <mat-card-title>{{"TICKET#: " + ticket.id}}</mat-card-title>
+            </div>
+
+            <hr>
+            <div class="date-dayleft">
+                <mat-card-subtitle class="receipt">{{ticket.flight.departDateTime | date: 'EEEE, MMMM d, y, h:mm a'}}
+                </mat-card-subtitle>
+                <mat-card-subtitle>{{ ticket.flight.airplane.model }}</mat-card-subtitle>
+            </div>
+            <div class="airport-seat">
+                <div class="airports">
+                    <h1>{{ticket.flight.departAirport.code}} <mat-icon>arrow_right</mat-icon>
+                        {{ticket.flight.arrivalAirport.code}}</h1>
+                </div>
+                
+                <div class="seat">
+                    <mat-card-subtitle class="receipt">SEAT: {{ticket.seat.seatNumber}} | SEAT CAN'T BE CHANGED
+                    </mat-card-subtitle>
+                    <h4>Meal Service: Dinner, Drinks, Snacks</h4>
+                    <div class="service-icons">
+                        <mat-icon>wifi</mat-icon>
+                        <mat-icon>5g</mat-icon>
+                        <mat-icon>bluetooth</mat-icon>
+                        <mat-icon>smart_display</mat-icon>
+                    </div>
+                </div>
+
+            </div>
+            <div class="update-user">
+                <form >
+                    <mat-form-field appearance="outline">
+                        <mat-label>First Name</mat-label>
+                        <input formControlName="firstName" matInput #input placeholder="Ex. John">
+                    </mat-form-field>
+            
+                    <mat-form-field appearance="outline">
+                        <mat-label>Last Name</mat-label>
+                        <input formControlName="lastName" matInput #input placeholder="Ex. Doe">
+                    </mat-form-field>
+            
+                    <mat-form-field appearance="outline">
+                        <mat-label>Email</mat-label>
+                        <input type="email" formControlName="email" matInput #input placeholder="Ex. johndoe@mail.com">
+                    </mat-form-field>
+            
+                    <mat-form-field appearance="outline">
+                        <mat-label>Phone Number</mat-label>
+                        <input type="tel" formControlName="phoneNumber" matInput #input>
+                    </mat-form-field>
+                </form>
+            </div>
+            <div class="button-row">
+                <button mat-raised-button color="warn" mat-dialog-close>
+                    Close
+                </button>
+                <button mat-raised-button color="primary" (click)="update(ticket)">
+                    Save
+                </button>
+            </div>
+
+        </mat-card>
+    </div>
+</div>

@@ -4,6 +4,7 @@ import { Ticket } from 'src/app/models/Ticket';
 import { EditTicketComponent } from '../edit-ticket/edit-ticket.component';
 import { MatDialog } from '@angular/material/dialog';
 import { TicketService } from 'src/app/services/ticket.service';
+import { User } from 'src/app/models/User';
 
 @Component({
   selector: 'app-ticket-receit',
@@ -47,15 +48,28 @@ export class TicketReceitComponent implements OnInit {
         next: (res) => {
           if(res == false) {
             alert('Ticket cancelled successfully')
+            const ticketToDelete = this.tickets.indexOf(ticket);
+            if (ticketToDelete > -1) {
+              this.tickets.splice(ticketToDelete, 1)
+            }
+            if (this.tickets.length <= 0) {
+              this.dialogRef.close('deleted');
+            }
           } else {
             alert('Flight not canceled')
           }
-          this.dialog.closeAll();
+          // this.dialogRef.close('deleted');
+          // this.dialog.closeAll();
         },
         error: (err) => {
           alert("Something went wrong");
         }
       });
+  }
+
+  editTicket(ticket :Ticket) {
+    this.dialogRef.close('edit')
+    this.openDialog(ticket);
   }
 
   openDialog(ticket: Ticket) {

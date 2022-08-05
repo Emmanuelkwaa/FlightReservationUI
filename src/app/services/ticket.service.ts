@@ -20,6 +20,10 @@ export class TicketService {
     return this.http.get<Ticket>(`${environment.baseUrl}${this.ticketUrl}/${id}`)
   }
 
+  public updateTicket(ticket :Ticket) :Observable<Ticket[]> {
+    return this.http.put<Ticket[]>(`${environment.baseUrl}${this.ticketUrl}/${ticket.id}`, ticket);
+  }
+
   deleteTicket(id :number) :Observable<boolean> {
     return this.http.delete<boolean>(`${environment.baseUrl}${this.ticketUrl}/${id}`);
   }
