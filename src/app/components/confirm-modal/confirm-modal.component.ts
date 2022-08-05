@@ -111,7 +111,7 @@ export class ConfirmModalComponent implements OnInit {
       }
 
       const ticket = new Ticket(
-        '',
+        0,
         this.confirmationForm.controls['tripType'].value,
         this.editData,
         new User(

@@ -4,7 +4,7 @@ import { User } from "./User";
 
 export class Ticket {
 
-    id? :string;
+    id :number;
     ticketType :string;
     flight :Flight;
     user :User;
@@ -16,7 +16,7 @@ export class Ticket {
     numberOfPassenger :number;
 
     constructor(
-        id = '',
+        id = 0,
         ticketType = '',
         flight = new Flight(),
         user = new User,

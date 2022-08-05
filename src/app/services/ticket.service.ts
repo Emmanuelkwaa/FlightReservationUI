@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, ObservedValueOf } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Ticket } from '../models/Ticket';
 
@@ -16,7 +16,11 @@ export class TicketService {
     return this.http.post<Ticket[]>(`${environment.baseUrl}${this.ticketUrl}`, ticket);
   }
 
-  getTicket(id :string): Observable<Ticket> {
+  getTicket(id :number): Observable<Ticket> {
     return this.http.get<Ticket>(`${environment.baseUrl}${this.ticketUrl}/${id}`)
+  }
+
+  deleteTicket(id :number) :Observable<boolean> {
+    return this.http.delete<boolean>(`${environment.baseUrl}${this.ticketUrl}/${id}`);
   }
 }

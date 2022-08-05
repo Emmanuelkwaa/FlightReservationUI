@@ -26,6 +26,7 @@ import { SearchResultComponent } from './components/search-result/search-result.
 import { ConfirmModalComponent } from './components/confirm-modal/confirm-modal.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { TicketReceitComponent } from './components/ticket-receit/ticket-receit.component';
+import { EditTicketComponent } from './components/edit-ticket/edit-ticket.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { TicketReceitComponent } from './components/ticket-receit/ticket-receit.
     FlightListComponent,
     SearchResultComponent,
     ConfirmModalComponent,
-    TicketReceitComponent
+    TicketReceitComponent,
+    EditTicketComponent
   ],
   imports: [
     BrowserModule,
