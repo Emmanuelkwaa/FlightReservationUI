@@ -33,7 +33,7 @@
 
             </div>
             <div class="update-user">
-                <form >
+                <form [formGroup] = "editForm">
                     <mat-form-field appearance="outline">
                         <mat-label>First Name</mat-label>
                         <input formControlName="firstName" matInput #input placeholder="Ex. John">

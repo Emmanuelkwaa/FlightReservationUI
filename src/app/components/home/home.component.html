@@ -4,6 +4,23 @@
             <div class="title">
                 <h1>Book Flights</h1>
             </div>
+            <form [formGroup]="searchForm">
+                <div class="search-ticket">
+                    <mat-form-field appearance="outline">
+                        <mat-icon matPrefix style="margin-right: 0.8rem;">search</mat-icon>
+                        <mat-label>Search ticket</mat-label>
+                        <input type="number" formControlName="search" matInput #input placeholder="Ex. 1123">
+                    </mat-form-field>
+                    <div class="search-button">
+                        <button mat-flat-button (click)="findTicket()">
+                            <!-- <mat-icon matPrefix style="margin-right: 0.8rem;">arrow_right_alt</mat-icon> -->
+                            Search
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+            <br>
 
             <mat-card class="booking-card">
                 <form [formGroup]="bookingForm">
@@ -67,8 +84,8 @@
 
         </section>
 
-        <app-search-result *ngIf="searchResult" [result] = "searchResult" ></app-search-result>
-        
+        <app-search-result *ngIf="searchResult" [result]="searchResult"></app-search-result>
+
         <app-flight-list></app-flight-list>
     </div>
 </div>

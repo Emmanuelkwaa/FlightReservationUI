@@ -47,6 +47,10 @@ export class EditTicketComponent implements OnInit {
   }
 
   update(ticket :Ticket) {
+    ticket.user.firstName = this.editForm.controls['firstName'].value;
+    ticket.user.lastName = this.editForm.controls['lastName'].value;
+    ticket.user.email = this.editForm.controls['email'].value;
+    ticket.user.phoneNumber = this.editForm.controls['phoneNumber'].value;
     this.ticketService.updateTicket(ticket)
       .subscribe({
         next: (res) => {
