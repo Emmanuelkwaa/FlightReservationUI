@@ -17,19 +17,19 @@
 
 .home {
     display: grid;
-    row-gap: 100px;
-    padding-top: 100px;
+    row-gap: 2rem;
+    padding-top: 3rem;
     padding-bottom: 0 0 0 10px;
 }
 
-/* .flight-search-form {
-    width: 80%;
-    margin: auto;
-} */
+.flight-search-form {
+    display: grid;
+    gap: 1rem;
+}
 
 .title {
-    display: flex;
-    justify-content: center;
+    width: 100%;
+    
 }
 
 .title h1 {
@@ -37,7 +37,6 @@
     font-size: 3.5rem;
     /* color: #3f51bf; */
     color: #324199;
-    padding: 50px;
 }
 
 .search-ticket {
@@ -124,7 +123,15 @@
 }
 
 @media only screen and (max-width: 600px) {
+    .home {
+    }
+    
     .flight-search-form {
         width: 100%;
     }
+
+    .title h1 {
+        color: #5867bd;
+    }
 }
+

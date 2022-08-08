@@ -18,11 +18,18 @@ table {
 }
 
 .Available-Flights {
-    font-size: 2rem;
-    padding: 10px;
+    font-size: 1.8rem;
+    padding-bottom: 10px;
     color: #324199;
 }
 
 @media only screen and (max-width: 768px) { 
     
+}
+
+@media only screen and (max-width: 600px) {
+    .Available-Flights {
+        font-size: 1.2rem;
+        color: #6076ee;
+    }
 }
