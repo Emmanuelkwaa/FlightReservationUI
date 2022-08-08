@@ -27,7 +27,6 @@ export class TicketReceitComponent implements OnInit {
     } else {
       this.width = '60%';
     }
-    console.log(this.tickets)
   }
 
   daysLeft(depDay: Date) {
@@ -36,8 +35,6 @@ export class TicketReceitComponent implements OnInit {
     const today = Date.parse(JSON.stringify(Date.now()));
     const departDate = Date.parse(JSON.stringify(depDay));
     const differenceMs = Math.abs(today - departDate);
-    console.log(Math.abs(today - departDate));
-    console.log(Math.abs((today - departDate))/ONE_DAY);
     return Math.round(differenceMs / ONE_DAY);
   }
 

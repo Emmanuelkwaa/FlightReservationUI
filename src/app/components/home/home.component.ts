@@ -35,7 +35,7 @@ export class HomeComponent implements OnInit {
     }
 
     this.searchForm = this.formBuilder.group({
-      search: ['', Validators.required],
+      search: ['',],
     });
 
     this.bookingForm = this.formBuilder.group({
@@ -76,16 +76,30 @@ export class HomeComponent implements OnInit {
   selectedTripType = this.tripTypes[0].value
 
   findTicket() {
-    const input = this.searchForm.controls['search'].value;
+    if (this.searchForm.controls['search'].value != '') {
+      const input = this.searchForm.controls['search'].value;
     this.ticketService.getTicket(input)
       .subscribe({
         next: (result) => {
+          if (result != null) {
+            this.searchForm.reset();
+            const ticket :Ticket[] = []
+            ticket.push(result);
+            this.openDialog(ticket)
+          } else {
+            alert('Ticket does not exist! Enter a valid ticket number');
+            this.searchForm.reset();
+          }
+        },
+        error: (err) => {
+          alert('Ticket does not exist! Enter a valid ticket number');
           this.searchForm.reset();
-          const ticket :Ticket[] = []
-          ticket.push(result);
-          this.openDialog(ticket)
         }
       })
+    } else {
+      alert('Please enter a ticket number');
+    }
+    
   }
 
   openDialog(tickets :Ticket[]) {
@@ -113,14 +127,19 @@ export class HomeComponent implements OnInit {
       this.flightService.getFlightByArrivalAndDepartCity(booking)
           .subscribe({
             next: (result) => {
-              this.searchResult = result;
-              console.log(this.searchResult);
+              if (result != null) {
+                this.searchResult = result;
+              } else {
+                this.bookingForm.reset();
+                alert('Sorry! There are no flights for your destination')
+              }
+              
             },
             error: (err) => {
-              alert(err.message);
+              this.bookingForm.reset();
+              alert('Sorry! There are no flights for your destination')
             }
           });
-          console.log(booking);
     }
   }
 
