@@ -34,6 +34,10 @@
 
 .title h1 {
     font-weight: 500;
+    font-size: 3.5rem;
+    /* color: #3f51bf; */
+    color: #324199;
+    padding: 50px;
 }
 
 .search-ticket {
@@ -51,6 +55,8 @@
     height: 50px;
     margin-top: 6px;
     font-size: 1rem;
+    color: white;
+    background-color: #3f51bf;
 }
 
 .booking-card {
